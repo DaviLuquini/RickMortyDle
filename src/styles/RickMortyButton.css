@@ -1,0 +1,77 @@
+.rick-morty-button {
+    position: relative;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(135deg, #A6EF67 0%, #58D7F3 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(166, 239, 103, 0.4);
+    outline: none;
+  }
+  
+  .rick-morty-button::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: linear-gradient(135deg, rgba(166, 239, 103, 0.2) 0%, rgba(88, 215, 243, 0.2) 100%);
+    border-radius: 6px;
+    z-index: -1;
+  }
+  
+  .rick-morty-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(166, 239, 103, 0.4) 0%, rgba(88, 215, 243, 0.4) 100%);
+    opacity: 0;
+    z-index: -2;
+    transition: opacity 0.3s ease;
+  }
+  
+  .rick-morty-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 20px rgba(88, 215, 243, 0.6);
+  }
+  
+  .rick-morty-button:hover::after {
+    opacity: 1;
+  }
+  
+  .rick-morty-button:active {
+    transform: translateY(1px) scale(0.98);
+  }
+  
+  .button-text {
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  @keyframes portalGlow {
+    0% {
+      box-shadow: 0 0 15px rgba(166, 239, 103, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(88, 215, 243, 0.6);
+    }
+    100% {
+      box-shadow: 0 0 15px rgba(166, 239, 103, 0.4);
+    }
+  }
+  
+  .rick-morty-button:hover {
+    animation: portalGlow 2s infinite;
+  }

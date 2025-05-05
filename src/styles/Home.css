@@ -1,0 +1,8 @@
+body {
+    background-image: url("../assets/rickMortyWallpaper1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 20px;
+    margin: 0;
+  }
