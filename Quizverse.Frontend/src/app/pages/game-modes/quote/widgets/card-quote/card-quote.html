@@ -1,7 +1,10 @@
-<div class="p-4 sm:p-6 backdrop-blur-sm bg-slate-700 border-2 border-slate-400 hover:border-slate-500 rounded-2xl transition-all duration-300 group 
-               cursor-pointer shadow-lg hover:shadow-slate-500/30 w-full">
+<div class="glass-card portal-glow p-5 sm:p-6 transition-all duration-300 w-full">
     <div class="flex flex-col items-center text-center justify-between mb-4 gap-3 sm:gap-4 lg:w-128">
-        <span class="wubbalubba text-5xl">Which character says</span>
-        <span class="text-2xl text-white">❝ {{ correctCharacter.quote }} ❞</span>
+        <span class="schwifty text-3xl lg:text-4xl text-portal-cyan text-glow-cyan">Which character says</span>
+        <div class="relative">
+            <span class="text-xl lg:text-2xl text-white/80 italic leading-relaxed">
+                &ldquo; {{ correctCharacter.quote }} &rdquo;
+            </span>
+        </div>
     </div>
 </div>

@@ -1,106 +1,56 @@
 <button [ngClass]="[
-    'group h-20 w-93 lg:min-w-100 lg:max-w-110 lg:h-20 relative flex items-center overflow-hidden cursor-pointer',
-    'bg-gradient-to-r from-cyan-400 via-green-400 to-lime-400',
-    'hover:from-cyan-300 hover:via-green-300 hover:to-lime-300',
-    'active:from-cyan-500 active:via-green-500 active:to-lime-500',
-    'shadow-2xl hover:shadow-cyan-400/50 active:shadow-lg',
+    'group relative flex items-center overflow-hidden cursor-pointer',
+    'h-20 w-93 lg:min-w-100 lg:max-w-110 lg:h-20',
     'transition-all duration-300 ease-out',
-    'transform hover:scale-110 active:scale-95',
-    'border-2 border-cyan-300 hover:border-lime-300',
+    'transform hover:scale-105 active:scale-95',
    customStyle ? customStyle : '',
   ]" [ngStyle]="{
-    borderRadius: '3rem',
-    filter: 'drop-shadow(0 0 20px rgba(34, 211, 238, 0.4))'
+    borderRadius: '1rem',
+    background: 'linear-gradient(135deg, rgba(26, 35, 64, 0.85), rgba(17, 24, 39, 0.9))',
+    backdropFilter: 'blur(16px)',
+    border: '1px solid rgba(151, 206, 76, 0.25)',
+    boxShadow: '0 0 15px rgba(151, 206, 76, 0.1), 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
   }">
-   <!-- Animated background portal effect -->
-   <div class="absolute inset-0 rounded-full opacity-30
-           bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500
-           animate-spin
-           group-hover:animate-ping
-           transition-all duration-500" [ngStyle]="{ animationDuration: '8s' }"></div>
 
-   <!-- Icon Circle Section -->
+   <!-- Hover glow border effect -->
+   <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
+           transition-opacity duration-300 pointer-events-none" [ngStyle]="{
+      background: 'linear-gradient(135deg, rgba(151, 206, 76, 0.15), rgba(8, 186, 227, 0.15))',
+      boxShadow: '0 0 25px rgba(151, 206, 76, 0.2), 0 0 50px rgba(8, 186, 227, 0.1)'
+   }"></div>
+
+   <!-- Top highlight -->
+   <div class="absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-portal-green/30 to-transparent
+           pointer-events-none"></div>
+
    @if(showIconCircle) {
    <div class="relative flex items-center justify-center
-           w-20 h-20 rounded-full
-           bg-gradient-to-br from-lime-300 via-green-400 to-cyan-400
-           group-hover:from-lime-200 group-hover:via-green-300 group-hover:to-cyan-300
-           group-active:from-lime-500 group-active:via-green-600 group-active:to-cyan-600
-           shadow-2xl shadow-lime-400/50
-           border-4 border-white
-           group-hover:border-lime-200
+           w-14 h-14 rounded-xl ml-3
            transition-all duration-300
-           ml-1
-           group-hover:rotate-12
-           group-active:rotate-0">
-      <!-- Inner glow effect -->
-      <div class="absolute inset-2 rounded-full
-             bg-gradient-to-br from-white/40 to-transparent
-             group-hover:from-white/60
-             transition-all duration-300"></div>
-
-      <!-- Rotating border effect -->
-      <div class="absolute inset-0 rounded-full
-             border-2 border-transparent
-             bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400
-             group-hover:animate-spin
-             transition-all duration-300" [ngStyle]="{
-        mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-        WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-        WebkitMaskComposite: 'xor',
-        padding: '2px'
-      }"></div>
-
-      <div class="relative z-10 text-slate-800
-             group-hover:text-slate-700
-             group-active:text-slate-900
-             transition-all duration-300
-             group-hover:scale-110
-             drop-shadow-sm">
+           group-hover:scale-110" [ngStyle]="{
+      background: 'linear-gradient(135deg, rgba(151, 206, 76, 0.2), rgba(8, 186, 227, 0.2))',
+      border: '1px solid rgba(151, 206, 76, 0.3)',
+      boxShadow: '0 0 12px rgba(151, 206, 76, 0.15)'
+   }">
+      <div class="relative z-10 text-portal-green
+             group-hover:text-portal-cyan
+             transition-colors duration-300">
          <ng-content select="[icon]"></ng-content>
       </div>
    </div>
    }
 
-   <!-- Button Content Area -->
-   <div class="flex-1 px-8 py-4 text-center relative z-10">
-      <div class="flex flex-col items-start text-slate-800 font-bold text-xl
-                 group-hover:text-slate-700
-                 group-active:text-slate-900
-                 transition-all duration-300
-                 drop-shadow-lg
-                 tracking-wide
-                 text-shadow-sm">
+   <div class="flex-1 px-6 py-3 text-left relative z-10">
+      <div class="flex flex-col gap-0.5">
          <ng-content></ng-content>
       </div>
    </div>
 
-   <!-- Sci-fi highlight overlay -->
-   <div class="absolute inset-0 rounded-full
-           bg-gradient-to-t from-transparent via-white/20 to-white/40
-           group-hover:via-white/30 group-hover:to-white/60
-           transition-all duration-300
-           pointer-events-none"></div>
-
-   <!-- Outer glow ring -->
-   <div class="absolute inset-0 rounded-full
-           ring-4 ring-cyan-400/30
-           group-hover:ring-lime-400/60
-           group-active:ring-green-500/40
-           transition-all duration-300
-           pointer-events-none
-           group-hover:ring-8"></div>
-
-   <!-- Particle effect overlay -->
-   <div class="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
-      <div class="absolute top-2 left-4 w-1 h-1 bg-white rounded-full
-             animate-ping
-             group-hover:animate-bounce" [ngStyle]="{ animationDelay: '0s' }"></div>
-      <div class="absolute top-6 right-8 w-1 h-1 bg-lime-200 rounded-full
-             animate-ping
-             group-hover:animate-bounce" [ngStyle]="{ animationDelay: '0.5s' }"></div>
-      <div class="absolute bottom-4 left-12 w-1 h-1 bg-cyan-200 rounded-full
-             animate-ping
-             group-hover:animate-bounce" [ngStyle]="{ animationDelay: '1s' }"></div>
+   <!-- Right arrow indicator -->
+   <div class="mr-4 text-portal-green/40 group-hover:text-portal-green/80
+           group-hover:translate-x-1 transition-all duration-300 relative z-10">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
    </div>
 </button>

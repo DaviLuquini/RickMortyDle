@@ -1,38 +1,40 @@
-<div class="flex flex-col justify-center items-center gap-4 lg:gap-8 ">
+<div class="flex flex-col justify-center items-center gap-6 lg:gap-10">
     <app-title></app-title>
-    <span class="wubbalubba text-4xl text-center">Guess Rick & Morty Characters</span>
-    <div class="flex flex-col gap-8">
+    <span class="schwifty text-3xl lg:text-4xl text-center text-portal-green text-glow-green tracking-wider">
+        Guess Rick & Morty Characters
+    </span>
+    <div class="flex flex-col gap-5">
         <app-play-button (keypress)="navigateTo('classic')" (click)="navigateTo('classic')">
-            <lucide-icon icon class="w-9 h-9" [img]="Landmark"></lucide-icon>
-            <span class="text-xl">Classic Mode</span>
-            <span class="text-base lg:text-lg">Get clues on every try</span>
+            <lucide-icon icon class="w-8 h-8" [img]="Landmark"></lucide-icon>
+            <span class="text-lg font-bold text-white/90 group-hover:text-portal-green transition-colors">Classic Mode</span>
+            <span class="text-sm text-white/50">Get clues on every try</span>
         </app-play-button>
         <app-play-button (keypress)="navigateTo('quote')" (click)="navigateTo('quote')">
-            <lucide-icon icon class="w-9 h-9" [img]="MessageSquareQuote"></lucide-icon>
-            <span class="text-xl">Quote</span>
-            <span class="text-base lg:text-lg">Guess with in-series quotes</span>
+            <lucide-icon icon class="w-8 h-8" [img]="MessageSquareQuote"></lucide-icon>
+            <span class="text-lg font-bold text-white/90 group-hover:text-portal-green transition-colors">Quote</span>
+            <span class="text-sm text-white/50">Guess with in-series quotes</span>
         </app-play-button>
         <app-play-button (keypress)="navigateTo('emoji')" (click)="navigateTo('emoji')">
-            <lucide-icon icon class="w-9 h-9" [img]="Laugh"></lucide-icon>
-            <span class="text-xl">Emoji</span>
-            <span class="text-base lg:text-lg">Guess with a set of emojis</span>
+            <lucide-icon icon class="w-8 h-8" [img]="Laugh"></lucide-icon>
+            <span class="text-lg font-bold text-white/90 group-hover:text-portal-green transition-colors">Emoji</span>
+            <span class="text-sm text-white/50">Guess with a set of emojis</span>
         </app-play-button>
         <app-play-button (keypress)="navigateTo('splash')" (click)="navigateTo('splash')">
-            <lucide-icon icon class="w-9 h-9" [img]="Image"></lucide-icon>
-            <span class="text-xl">Splash</span>
-            <span class="text-base lg:text-lg">Guess from an image</span>
+            <lucide-icon icon class="w-8 h-8" [img]="Image"></lucide-icon>
+            <span class="text-lg font-bold text-white/90 group-hover:text-portal-green transition-colors">Splash</span>
+            <span class="text-sm text-white/50">Guess from an image</span>
         </app-play-button>
     </div>
     
-    <div class="flex flex-col gap-1 text-white items-center justify-center text-sm">
-        <span>rickandmortydle.com — 2025</span>
+    <div class="flex flex-col gap-2 items-center justify-center text-sm mt-4">
+        <span class="text-white/30">rickandmortydle.com — 2025</span>
         <div class="flex gap-4 items-center">
-            <div class="underline cursor-pointer flex items-center gap-1" (click)="openAboutModal()"
-            (keypress)="openAboutModal()">
+            <div class="text-white/40 hover:text-portal-green cursor-pointer flex items-center gap-1 transition-colors duration-200" 
+                (click)="openAboutModal()" (keypress)="openAboutModal()">
                 <lucide-icon [img]="Info" class="w-4 h-4"></lucide-icon>
                 About
             </div>
-            <a [routerLink]="'privacy-policy'" class="underline cursor-pointer">
+            <a [routerLink]="'privacy-policy'" class="text-white/40 hover:text-portal-green cursor-pointer transition-colors duration-200">
                 Privacy Policy
             </a>
         </div>

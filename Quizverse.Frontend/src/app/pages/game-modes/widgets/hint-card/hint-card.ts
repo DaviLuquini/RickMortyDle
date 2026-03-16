@@ -1,10 +1,11 @@
 import { Component, Input, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Image, Lightbulb } from "lucide-angular";
 import { ICharacter } from '../../../../models/character';
 
 @Component({
   selector: 'app-hint-card',
-  imports: [LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './hint-card.html',
   styleUrl: './hint-card.scss'
 })

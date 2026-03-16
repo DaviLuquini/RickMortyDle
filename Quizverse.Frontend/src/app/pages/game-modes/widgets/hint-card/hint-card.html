@@ -1,59 +1,72 @@
 <div class="grid grid-cols-2 gap-4 mb-8 lg:w-140">
     <!-- First Letter Card -->
-    <div class="p-4 sm:p-6 backdrop-blur-sm bg-emerald-50/95 border border-emerald-500/20 
-               hover:border-emerald-500 rounded-2xl transition-all duration-300 group 
-               cursor-pointer shadow-lg hover:shadow-emerald-500/30" (click)="onLetterHintClick()" (keypress)="onLetterHintClick()">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3 sm:gap-4">
+    <div class="glass-card p-4 sm:p-5 hover:border-portal-green/40
+               transition-all duration-300 group cursor-pointer" [ngStyle]="{
+      boxShadow: '0 0 12px rgba(151, 206, 76, 0.08), 0 4px 15px rgba(0, 0, 0, 0.2)'
+    }" (click)="onLetterHintClick()" (keypress)="onLetterHintClick()">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-3 sm:gap-4">
             <div class="flex items-center gap-2 sm:gap-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-all duration-300 
-                           bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500/20">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-all duration-300
+                           text-portal-green group-hover:text-portal-cyan" [ngStyle]="{
+                  background: 'rgba(151, 206, 76, 0.1)',
+                  border: '1px solid rgba(151, 206, 76, 0.15)'
+                }">
                     <lucide-icon class="w-5 h-5 sm:w-6 sm:h-6" [img]="Lightbulb"></lucide-icon>
                 </div>
                 <div>
-                    <h3 class="font-semibold text-slate-400 text-xs sm:text-base">First Letter</h3>
-                    <p class="text-[10px] sm:text-sm text-slate-400">
+                    <h3 class="font-semibold text-white/80 text-xs sm:text-sm">First Letter</h3>
+                    <p class="text-[10px] sm:text-xs text-white/40">
                         After {{ letterHintAttempts }} attempts
                     </p>
                 </div>
             </div>
-            <div
-                class="bg-slate-700 text-white text-xs sm:text-sm font-bold px-2 sm:px-4 py-1 sm:py-2 rounded-lg shadow-lg text-center">
+            <div class="text-portal-green text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg text-center" [ngStyle]="{
+              background: 'rgba(151, 206, 76, 0.1)',
+              border: '1px solid rgba(151, 206, 76, 0.2)'
+            }">
                 {{ showLetterHint }}
             </div>
         </div>
-        <p class="text-[10px] sm:text-sm text-slate-400">Click to reveal the first letter</p>
+        <p class="text-[10px] sm:text-xs text-white/30">Click to reveal the first letter</p>
     </div>
 
     <!-- Image Card -->
-    <div class="p-4 sm:p-6 backdrop-blur-sm bg-blue-50/95 border border-blue-500/20 
-               hover:border-blue-500 rounded-2xl transition-all duration-300 group 
-               cursor-pointer shadow-lg hover:shadow-blue-500/30" (click)="onImageHintClick()" (keypress)="onImageHintClick()">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3 sm:gap-4">
+    <div class="glass-card p-4 sm:p-5 hover:border-portal-cyan/40
+               transition-all duration-300 group cursor-pointer" [ngStyle]="{
+      boxShadow: '0 0 12px rgba(8, 186, 227, 0.08), 0 4px 15px rgba(0, 0, 0, 0.2)'
+    }" (click)="onImageHintClick()" (keypress)="onImageHintClick()">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-3 sm:gap-4">
             <div class="flex items-center gap-2 sm:gap-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-all duration-300 
-                           bg-blue-500/10 text-blue-400 group-hover:bg-blue-500/20">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-all duration-300
+                           text-portal-cyan group-hover:text-portal-green" [ngStyle]="{
+                  background: 'rgba(8, 186, 227, 0.1)',
+                  border: '1px solid rgba(8, 186, 227, 0.15)'
+                }">
                     <lucide-icon class="w-5 h-5 sm:w-6 sm:h-6" [img]="Image"></lucide-icon>
                 </div>
                 <div>
-                    <h3 class="font-semibold text-slate-400 text-xs sm:text-base">Visual Hint</h3>
-                    <p class="text-[10px] sm:text-sm text-slate-400">
+                    <h3 class="font-semibold text-white/80 text-xs sm:text-sm">Visual Hint</h3>
+                    <p class="text-[10px] sm:text-xs text-white/40">
                         After {{ imageHintAttempts }} attempts
                     </p>
                 </div>
             </div>
             @if(imageHintAttempts == 0 && imageHintClicked()) {
-            <div class="flex bg-slate-700 p-1 rounded-lg shadow-lg items-center justify-center">
-                <div class="border border-white rounded-sm overflow-hidden lg:border-0">
-                    <img class="h-6 w-6 lg:h-9 lg:w-8" [src]="showImageHint" alt="Character" />
-                </div>
+            <div class="rounded-lg overflow-hidden" [ngStyle]="{
+              border: '1px solid rgba(8, 186, 227, 0.3)',
+              boxShadow: '0 0 10px rgba(8, 186, 227, 0.15)'
+            }">
+                <img class="h-7 w-7 lg:h-9 lg:w-9" [src]="showImageHint" alt="Character" />
             </div>
             } @else {
-            <div
-                class="bg-slate-700 text-white text-xs sm:text-sm font-bold px-2 sm:px-4 py-1 sm:py-2 rounded-lg shadow-lg text-center">
+            <div class="text-portal-cyan text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg text-center" [ngStyle]="{
+              background: 'rgba(8, 186, 227, 0.1)',
+              border: '1px solid rgba(8, 186, 227, 0.2)'
+            }">
                 ?
             </div>
             }
         </div>
-        <p class="text-[10px] sm:text-sm text-slate-400">Click to reveal a visual hint</p>
+        <p class="text-[10px] sm:text-xs text-white/30">Click to reveal a visual hint</p>
     </div>
 </div>

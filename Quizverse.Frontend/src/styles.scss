@@ -1,8 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
 
 @theme {
-  
+  --color-portal-green: #97ce4c;
+  --color-portal-cyan: #08BAE3;
+  --color-portal-yellow: #FFF765;
+  --color-rick-blue: #5BCEFA;
+  --color-space-dark: #0a0e1a;
+  --color-space-mid: #111827;
+  --color-space-card: #1a2340;
+  --color-space-light: #243056;
+  --color-neon-green: #39ff14;
+  --color-match-green: #22c55e;
+  --color-match-red: #ef4444;
+  --color-match-orange: #f59e0b;
 }
 
 html,
@@ -17,6 +27,21 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: center;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 14, 26, 0.88) 0%,
+    rgba(10, 14, 26, 0.75) 40%,
+    rgba(10, 14, 26, 0.85) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
 }
 
 app-root {
@@ -27,6 +52,8 @@ app-root {
   min-height: 100%;
   height: auto;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .wubbalubba {
@@ -35,7 +62,59 @@ app-root {
   -webkit-text-stroke: 0.02em #FFF765;
 }
 
+.schwifty {
+  font-family: 'GetSchwifty', sans-serif;
+}
+
 .disabled {
-  pointer-events: none; 
-  opacity: 0.5;        
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.glass-card {
+  background: rgba(26, 35, 64, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(151, 206, 76, 0.15);
+  border-radius: 1rem;
+}
+
+.portal-glow {
+  box-shadow:
+    0 0 15px rgba(151, 206, 76, 0.15),
+    0 0 30px rgba(8, 186, 227, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.portal-glow-strong {
+  box-shadow:
+    0 0 20px rgba(151, 206, 76, 0.25),
+    0 0 40px rgba(8, 186, 227, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(151, 206, 76, 0.5);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(8, 186, 227, 0.5);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 35, 64, 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(151, 206, 76, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(151, 206, 76, 0.5);
 }

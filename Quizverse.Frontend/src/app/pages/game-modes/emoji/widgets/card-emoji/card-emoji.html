@@ -1,13 +1,12 @@
-<div class="p-4 sm:p-6 backdrop-blur-sm bg-slate-700 border-2 border-slate-400 hover:border-slate-500 rounded-2xl transition-all duration-300 group 
-               cursor-pointer shadow-lg hover:shadow-slate-500/30 w-full">
+<div class="glass-card portal-glow p-5 sm:p-6 transition-all duration-300 w-full">
     <div class="flex flex-col items-center text-center justify-between 
-    mb-4 gap-3 sm:gap-6 lg:w-128">
-        <span class="wubbalubba text-5xl">Which character do these emojis describe?</span>
-        <div class="flex flex-row items-center gap-6">
-            <span class="font-bold lg:text-4xl">{{ showEmoji(0, 0) }}</span>
-            <span class="font-bold lg:text-4xl">{{ showEmoji(1, 1) }}</span>
-            <span class="font-bold lg:text-4xl">{{ showEmoji(2, 2) }}</span>
+    mb-4 gap-4 sm:gap-6 lg:w-128">
+        <span class="schwifty text-3xl lg:text-4xl text-portal-cyan text-glow-cyan">Which character do these emojis describe?</span>
+        <div class="flex flex-row items-center gap-8">
+            <span class="text-3xl lg:text-5xl transition-all duration-300">{{ showEmoji(0, 0) }}</span>
+            <span class="text-3xl lg:text-5xl transition-all duration-300">{{ showEmoji(1, 1) }}</span>
+            <span class="text-3xl lg:text-5xl transition-all duration-300">{{ showEmoji(2, 2) }}</span>
         </div>
-        <span class="text-gray-500 text-sm font-bold">Each try unlocks an emoji.</span>
+        <span class="text-white/30 text-xs font-medium tracking-wider uppercase">Each try unlocks an emoji</span>
     </div>
 </div>

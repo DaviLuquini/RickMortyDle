@@ -1,49 +1,56 @@
 <div class="fixed inset-0 flex items-center justify-center z-50">
-    <div class="bg-white rounded-lg max-w-2xl max-h-[90vh] overflow-y-auto mx-4 p-6 relative
-    border border-black">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" (click)="closeModal()" (keypress)="closeModal()"></div>
+    
+    <div class="glass-card max-w-2xl max-h-[85vh] overflow-y-auto mx-4 p-6 relative z-10"
+        style="border: 1px solid rgba(151, 206, 76, 0.2); box-shadow: 0 0 30px rgba(151, 206, 76, 0.1), 0 8px 32px rgba(0, 0, 0, 0.4)">
         <!-- Close button -->
-        <button class="absolute cursor-pointer top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold"
+        <button class="absolute cursor-pointer top-4 right-4 text-white/40 hover:text-portal-green text-2xl font-bold
+            transition-colors duration-200"
             (click)="closeModal()">
-            ×
+            &times;
         </button>
 
         <!-- About Section -->
-        <div class="flex flex-col gap-2">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">About</h2>
-            <p class="text-gray-600 mb-4">
+        <div class="flex flex-col gap-3">
+            <h2 class="text-2xl font-bold text-portal-green text-glow-green mb-2">About</h2>
+            <p class="text-white/70 mb-3">
                 Every day, guess a different character from the Rick and Morty series.
             </p>
-            <p class="text-sm text-gray-500 mb-2">
+            <p class="text-sm text-white/40 mb-2">
                 RickAndMortyDle was created under the Fair Use policy using assets owned by Adult Swim and Justin
                 Roiland & Dan Harmon.
                 This project is fan-made and not endorsed or sponsored by Adult Swim.
             </p>
-            <p class="text-sm text-gray-500 mb-2">
+            <p class="text-sm text-white/40 mb-2">
                 Greatly inspired by these cool games:
-                <span class="font-medium">Loldle and Wordle.</span>
+                <span class="font-medium text-portal-cyan">Loldle and Wordle.</span>
             </p>
-            <p class="text-sm text-gray-500 mb-4">
+            <p class="text-sm text-white/40 mb-4">
                 The website uses cookies to collect statistics and show ads. More info in the
-                <a href="#" class="text-blue-500 hover:underline">Privacy Policy</a>.
+                <a href="#" class="text-portal-cyan hover:text-portal-green transition-colors">Privacy Policy</a>.
             </p>
         </div>
 
+        <div class="w-full h-px my-4"
+            style="background: linear-gradient(to right, transparent, rgba(151, 206, 76, 0.2), transparent)"></div>
+
         <!-- Feedbacks Section -->
-        <div class="mb-8">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Feedbacks / Questions</h3>
-            <p class="text-gray-600 mb-4">
-                Have a suggestion? Found an error? Just wanna say hi? 😎<br>
+        <div class="mb-6">
+            <h3 class="text-xl font-bold text-portal-cyan mb-3">Feedbacks / Questions</h3>
+            <p class="text-white/60 mb-3">
+                Have a suggestion? Found an error? Just wanna say hi?<br>
                 Send a mail to
                 <a href="mailto:daviluquini7@gmail.com"
-                    class="text-blue-500 hover:underline">daviluquini7&#64;gmail.com</a>.
+                    class="text-portal-green hover:text-portal-cyan transition-colors">daviluquini7&#64;gmail.com</a>.
             </p>
         </div>
 
         <!-- Support Section -->
-        <div class="mb-6">
+        <div class="mb-4">
             <div class="text-center">
-                <p class="text-gray-600 mb-1">Cheers!</p>
-                <p class="text-sm text-gray-500">0.1</p>
+                <p class="text-white/50 mb-1">Cheers!</p>
+                <p class="text-sm text-white/30">0.1</p>
             </div>
         </div>
     </div>

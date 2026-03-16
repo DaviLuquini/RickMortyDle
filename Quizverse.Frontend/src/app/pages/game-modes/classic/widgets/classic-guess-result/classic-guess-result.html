@@ -1,60 +1,71 @@
 @if(result.matches) {
-<div class="flex flex-row gap-1 lg:gap-4 mb-4 font-bold">
+<div class="flex flex-row gap-1 lg:gap-3 mb-3 font-bold">
   <!-- Image Box -->
   <div class="flex flex-col items-center">
     @if (showHeaders) {
-    <div class="text-xs sm:text-base text-white mb-1">Image</div>
+    <div class="text-[10px] sm:text-xs text-white/50 mb-1 uppercase tracking-wider">Image</div>
     }
-    <div class="flex items-center justify-center rounded-lg bg-slate-700 border border-white">
-      <img [src]="result.character.image" [alt]="result.character.name" class="w-13 h-13 lg:w-22 lg:h-22 rounded-lg" />
+    <div class="flex items-center justify-center rounded-xl overflow-hidden" [ngStyle]="{
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+    }">
+      <img [src]="result.character.image" [alt]="result.character.name" class="w-13 h-13 lg:w-22 lg:h-22" />
     </div>
   </div>
 
   <!-- Status Box -->
   <div class="flex flex-col items-center">
     @if (showHeaders) {
-    <div class="text-xs sm:text-base text-white mb-1">Status</div>
+    <div class="text-[10px] sm:text-xs text-white/50 mb-1 uppercase tracking-wider">Status</div>
     }
     <div
-      class="flex flex-col items-center justify-center rounded-lg p-1 sm:p-2 transition-colors break-all w-13 h-13 lg:w-22 lg:h-22 border border-white"
-      [ngClass]="result.matches.status ? getMatchColor() : getNoMatchColor()">
-      <div class="text-xs sm:text-base font-semibold text-white">{{ capitalize(result.character.status) }}</div>
+      class="flex flex-col items-center justify-center rounded-xl p-1 sm:p-2 transition-colors break-all w-13 h-13 lg:w-22 lg:h-22"
+      [ngClass]="result.matches.status ? getMatchColor() : getNoMatchColor()" [ngStyle]="{
+        boxShadow: result.matches.status ? '0 0 12px rgba(34, 197, 94, 0.3)' : '0 0 12px rgba(239, 68, 68, 0.3)'
+      }">
+      <div class="text-[10px] sm:text-sm font-semibold text-white">{{ capitalize(result.character.status) }}</div>
     </div>
   </div>
 
   <!-- Species Box -->
   <div class="flex flex-col items-center">
     @if (showHeaders) {
-    <div class="text-xs sm:text-base text-white mb-1">Species</div>
+    <div class="text-[10px] sm:text-xs text-white/50 mb-1 uppercase tracking-wider">Species</div>
     }
     <div
-      class="flex flex-col items-center justify-center rounded-lg p-1 sm:p-2 transition-colors break-all w-13 h-13 lg:w-22 lg:h-22 border border-white"
-      [ngClass]="result.matches.species ? getMatchColor() : getNoMatchColor()">
-      <div class="text-xs sm:text-base font-semibold text-white">{{ capitalize(result.character.species) }}</div>
+      class="flex flex-col items-center justify-center rounded-xl p-1 sm:p-2 transition-colors break-all w-13 h-13 lg:w-22 lg:h-22"
+      [ngClass]="result.matches.species ? getMatchColor() : getNoMatchColor()" [ngStyle]="{
+        boxShadow: result.matches.species ? '0 0 12px rgba(34, 197, 94, 0.3)' : '0 0 12px rgba(239, 68, 68, 0.3)'
+      }">
+      <div class="text-[10px] sm:text-sm font-semibold text-white">{{ capitalize(result.character.species) }}</div>
     </div>
   </div>
 
   <!-- Gender Box -->
   <div class="flex flex-col items-center">
     @if (showHeaders) {
-    <div class="text-xs sm:text-base text-white mb-1">Gender</div>
+    <div class="text-[10px] sm:text-xs text-white/50 mb-1 uppercase tracking-wider">Gender</div>
     }
     <div
-      class="flex flex-col items-center justify-center rounded-lg p-1 sm:p-2 transition-colors break-all w-13 h-13 lg:w-22 lg:h-22 border border-white"
-      [ngClass]="result.matches.gender ? getMatchColor() : getNoMatchColor()">
-      <div class="text-xs sm:text-base font-semibold text-white">{{ capitalize(result.character.gender) }}</div>
+      class="flex flex-col items-center justify-center rounded-xl p-1 sm:p-2 transition-colors break-all w-13 h-13 lg:w-22 lg:h-22"
+      [ngClass]="result.matches.gender ? getMatchColor() : getNoMatchColor()" [ngStyle]="{
+        boxShadow: result.matches.gender ? '0 0 12px rgba(34, 197, 94, 0.3)' : '0 0 12px rgba(239, 68, 68, 0.3)'
+      }">
+      <div class="text-[10px] sm:text-sm font-semibold text-white">{{ capitalize(result.character.gender) }}</div>
     </div>
   </div>
 
   <!-- Origin Box -->
   <div class="flex flex-col items-center">
     @if (showHeaders) {
-    <div class="text-xs sm:text-base text-white mb-1">Origin</div>
+    <div class="text-[10px] sm:text-xs text-white/50 mb-1 uppercase tracking-wider">Origin</div>
     }
     <div
-      class="flex flex-col items-center justify-center rounded-lg p-1 sm:p-2 transition-colors break-all w-14 h-13 lg:w-26 lg:h-22 text-center border border-white"
-      [ngClass]="result.matches.origin ? getMatchColor() : getNoMatchColor()">
-      <div class="text-xs sm:text-base font-semibold text-white">
+      class="flex flex-col items-center justify-center rounded-xl p-1 sm:p-2 transition-colors break-all w-14 h-13 lg:w-26 lg:h-22 text-center"
+      [ngClass]="result.matches.origin ? getMatchColor() : getNoMatchColor()" [ngStyle]="{
+        boxShadow: result.matches.origin ? '0 0 12px rgba(34, 197, 94, 0.3)' : '0 0 12px rgba(239, 68, 68, 0.3)'
+      }">
+      <div class="text-[10px] sm:text-sm font-semibold text-white">
         {{ result.character.origin.name.split(' ')[0] }}
       </div>
     </div>
@@ -63,12 +74,14 @@
   <!-- Location Box -->
   <div class="flex flex-col items-center">
     @if (showHeaders) {
-    <div class="text-xs sm:text-base text-white mb-1">Location</div>
+    <div class="text-[10px] sm:text-xs text-white/50 mb-1 uppercase tracking-wider">Location</div>
     }
     <div
-      class="flex flex-col items-center justify-center rounded-lg p-1 sm:p-2 transition-colors break-all w-14 h-13 lg:w-26 lg:h-22 text-center border border-white"
-      [ngClass]="result.matches.location ? getMatchColor() : getNoMatchColor()">
-      <div class="text-xs sm:text-base font-semibold text-white">
+      class="flex flex-col items-center justify-center rounded-xl p-1 sm:p-2 transition-colors break-all w-14 h-13 lg:w-26 lg:h-22 text-center"
+      [ngClass]="result.matches.location ? getMatchColor() : getNoMatchColor()" [ngStyle]="{
+        boxShadow: result.matches.location ? '0 0 12px rgba(34, 197, 94, 0.3)' : '0 0 12px rgba(239, 68, 68, 0.3)'
+      }">
+      <div class="text-[10px] sm:text-sm font-semibold text-white">
         {{ result.character.location.name.split(' ')[0] }}
       </div>
     </div>
@@ -77,11 +90,15 @@
   <!-- Episodes Box -->
   <div class="flex flex-col items-center">
     @if (showHeaders) {
-    <div class="text-xs sm:text-base text-white mb-1">Episodes</div>
+    <div class="text-[10px] sm:text-xs text-white/50 mb-1 uppercase tracking-wider">Episodes</div>
     }
     <div
-      class="flex flex-col items-center justify-center rounded-lg p-1 sm:p-2 transition-colors break-all w-13 h-13 lg:w-22 lg:h-22 border border-white"
-      [ngClass]="getEpisodeColor(result.matches.episodeCount)">
+      class="flex flex-col items-center justify-center rounded-xl p-1 sm:p-2 transition-colors break-all w-13 h-13 lg:w-22 lg:h-22"
+      [ngClass]="getEpisodeColor(result.matches.episodeCount)" [ngStyle]="{
+        boxShadow: result.matches.episodeCount === 'exact' ? '0 0 12px rgba(34, 197, 94, 0.3)' : 
+                   result.matches.episodeCount === 'close' ? '0 0 12px rgba(245, 158, 11, 0.3)' : 
+                   '0 0 12px rgba(239, 68, 68, 0.3)'
+      }">
       <div class="text-xs sm:text-lg font-bold text-white">{{ result.character.episodeCount }}</div>
     </div>
   </div>

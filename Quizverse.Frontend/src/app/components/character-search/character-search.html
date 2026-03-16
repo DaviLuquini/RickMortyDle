@@ -1,18 +1,29 @@
 <div class="flex flex-col items-center justify-center relative lg:w-140">
   <div #dropdownWrapper class="flex flex-col items-center justify-center w-full relative">
-    <input type="text" placeholder="Type character name..." class="h-14 w-full rounded-lg border-2 border-slate-700 bg-slate-800 px-6 
-             text-lg text-slate-200 placeholder-slate-500 outline-none
+    <input type="text" placeholder="Type character name..." class="h-14 w-full rounded-xl px-6 
+             text-lg text-white/90 placeholder-white/30 outline-none
              transition-all duration-300 ease-in-out
-             focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/50" [value]="searchText()"
+             focus:ring-2 focus:ring-portal-green/50" [ngStyle]="{
+      background: 'rgba(26, 35, 64, 0.8)',
+      backdropFilter: 'blur(12px)',
+      border: '1px solid rgba(151, 206, 76, 0.2)',
+      boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03)'
+    }" [value]="searchText()"
       [disabled]="isGameOver()" (click)="showDropdown.set(true)" (focus)="showDropdown.set(true)"
       (input)="searchText.set($any($event.target).value)" />
 
     @if(showDropdown() && filteredInputCharacters().length > 0 && !isGameOver()) {
-    <ul class="absolute top-full z-50 max-h-60 overflow-y-auto rounded-lg bg-slate-700 text-slate-200 shadow-lg w-full">
+    <ul class="absolute top-full z-50 max-h-60 overflow-y-auto rounded-xl shadow-2xl w-full mt-1" [ngStyle]="{
+      background: 'rgba(26, 35, 64, 0.95)',
+      backdropFilter: 'blur(16px)',
+      border: '1px solid rgba(151, 206, 76, 0.15)'
+    }">
       @for (character of filteredInputCharacters(); track character.id) {
-      <li class="px-4 py-2 hover:bg-cyan-500 cursor-pointer flex items-center" (click)="makeGuess(character)"
-        (keypress)="makeGuess(character)">
-        <img [src]="character.image" alt="{{ character.name }}" class="w-10 h-10 rounded-lg mr-2" />
+      <li class="px-4 py-2.5 cursor-pointer flex items-center text-white/80
+           hover:text-white transition-all duration-150" [ngStyle]="{}" 
+        (click)="makeGuess(character)" (keypress)="makeGuess(character)"
+        [class.hover:bg-portal-green/15]="true">
+        <img [src]="character.image" alt="{{ character.name }}" class="w-10 h-10 rounded-lg mr-3 border border-white/10" />
         {{ character.name }}
       </li>
       }
@@ -20,9 +31,12 @@
     }
 
     @if(showDropdown() && filteredInputCharacters().length == 0 && searchText().length > 1) {
-    <ul
-      class="absolute top-full mt-1 z-50 max-h-60 overflow-y-auto rounded-lg bg-slate-700 text-slate-200 shadow-lg w-full">
-      <li class="px-4 py-2">No characters found.</li>
+    <ul class="absolute top-full mt-1 z-50 max-h-60 overflow-y-auto rounded-xl shadow-2xl w-full" [ngStyle]="{
+      background: 'rgba(26, 35, 64, 0.95)',
+      backdropFilter: 'blur(16px)',
+      border: '1px solid rgba(151, 206, 76, 0.15)'
+    }">
+      <li class="px-4 py-3 text-white/40">No characters found.</li>
     </ul>
     }
   </div>
@@ -44,46 +58,47 @@
 
 
 @if (isGameOver()) {
-<div #gameOverElement class="bg-gradient-to-br from-gray-100 to-green-500 border-2 border-green-500 rounded-xl 
-  shadow-[0_0_15px_rgba(0,255,0,0.3),0_0_10px_rgba(0,0,0,0.1)] p-1 lg:p-5 text-center max-w-md 
-  w-[80%] h-[90%] lg:w-full lg:h-full game-over-bounce flex flex-col items-center gap-1">
-  <h2 class="text-base lg:text-2xl font-bold mb-2">🎉 Congratulations! 🎉</h2>
-  <p class="text-sm lg:text-lg">You guessed correctly in <span class="font-bold">{{ tries() }} tries!</span></p>
-  <span class="text-sm lg:text-lg">
-    Next character in: <span class="text-base lg:text-xl font-bold">{{ timeLeft }}</span>
+<div #gameOverElement class="glass-card portal-glow-strong p-4 lg:p-6 text-center max-w-md 
+  w-[85%] lg:w-full game-over-bounce flex flex-col items-center gap-2 mt-4" [ngStyle]="{
+  border: '1px solid rgba(151, 206, 76, 0.3)'
+}">
+  <h2 class="text-lg lg:text-2xl font-bold text-portal-green text-glow-green">Congratulations!</h2>
+  <p class="text-sm lg:text-base text-white/70">You guessed correctly in <span class="font-bold text-portal-cyan">{{ tries() }} tries!</span></p>
+  <span class="text-sm lg:text-base text-white/50">
+    Next character in: <span class="text-base lg:text-lg font-bold text-portal-yellow">{{ timeLeft }}</span>
   </span>
-  <p class="text-sm lg:text-lg font-bold">Next mode:</p>
+  <p class="text-sm lg:text-base font-semibold text-white/60 mt-1">Next mode:</p>
   @switch (gameMode) {
   @case ('classic') {
-  <app-play-button [customStyle]="'h-12! w-65! lg:min-w-95! lg:max-w-95! lg:h-20!'" [showIconCircle]="showIconCircle"
+  <app-play-button [customStyle]="'h-14! w-70! lg:min-w-90! lg:max-w-95! lg:h-18!'" [showIconCircle]="showIconCircle"
     (keypress)="navigateTo('quote')" (click)="navigateTo('quote')">
-    <lucide-icon icon class="w-8 h-8" [img]="MessageSquareQuote"></lucide-icon>
-    <span class="text-base lg:text-xl whitespace-nowrap">Quote</span>
-    <span class="text-base lg:text-base whitespace-nowrap">Guess with in-series quotes</span>
+    <lucide-icon icon class="w-7 h-7" [img]="MessageSquareQuote"></lucide-icon>
+    <span class="text-base lg:text-lg font-bold text-white/90 whitespace-nowrap">Quote</span>
+    <span class="text-sm text-white/50 whitespace-nowrap">Guess with in-series quotes</span>
   </app-play-button>
   }
   @case ('quote') {
-  <app-play-button [customStyle]="'h-12! w-65! lg:min-w-95! lg:max-w-95! lg:h-20!'" [showIconCircle]="showIconCircle"
+  <app-play-button [customStyle]="'h-14! w-70! lg:min-w-90! lg:max-w-95! lg:h-18!'" [showIconCircle]="showIconCircle"
     (keypress)="navigateTo('emoji')" (click)="navigateTo('emoji')">
-    <lucide-icon icon class="w-8 h-8" [img]="Laugh"></lucide-icon>
-    <span class="text-base lg:text-xl whitespace-nowrap">Emoji</span>
-    <span class="text-base lg:text-base whitespace-nowrap">Guess with a set of emojis</span>
+    <lucide-icon icon class="w-7 h-7" [img]="Laugh"></lucide-icon>
+    <span class="text-base lg:text-lg font-bold text-white/90 whitespace-nowrap">Emoji</span>
+    <span class="text-sm text-white/50 whitespace-nowrap">Guess with a set of emojis</span>
   </app-play-button>
   }
   @case ('emoji') {
-  <app-play-button [customStyle]="'h-12! w-65! lg:min-w-95! lg:max-w-95! lg:h-20!'" [showIconCircle]="showIconCircle"
+  <app-play-button [customStyle]="'h-14! w-70! lg:min-w-90! lg:max-w-95! lg:h-18!'" [showIconCircle]="showIconCircle"
     (keypress)="navigateTo('splash')" (click)="navigateTo('splash')">
-    <lucide-icon icon class="w-8 h-8" [img]="Image"></lucide-icon>
-    <span class="text-base lg:text-xl whitespace-nowrap">Splash</span>
-    <span class="text-base lg:text-base whitespace-nowrap">Guess from an image</span>
+    <lucide-icon icon class="w-7 h-7" [img]="Image"></lucide-icon>
+    <span class="text-base lg:text-lg font-bold text-white/90 whitespace-nowrap">Splash</span>
+    <span class="text-sm text-white/50 whitespace-nowrap">Guess from an image</span>
   </app-play-button>
   }
   @case ('splash') {
-  <app-play-button [customStyle]="'h-12! w-65! lg:min-w-95! lg:max-w-95! lg:h-20!'" [showIconCircle]="showIconCircle"
+  <app-play-button [customStyle]="'h-14! w-70! lg:min-w-90! lg:max-w-95! lg:h-18!'" [showIconCircle]="showIconCircle"
     (keypress)="navigateTo('classic')" (click)="navigateTo('classic')">
-    <lucide-icon icon class="w-8 h-8" [img]="Landmark"></lucide-icon>
-    <span class="text-base lg:text-xl whitespace-nowrap">Classic Mode</span>
-    <span class="text-base lg:text-base whitespace-nowrap">Get clues on every try</span>
+    <lucide-icon icon class="w-7 h-7" [img]="Landmark"></lucide-icon>
+    <span class="text-base lg:text-lg font-bold text-white/90 whitespace-nowrap">Classic Mode</span>
+    <span class="text-sm text-white/50 whitespace-nowrap">Get clues on every try</span>
   </app-play-button>
   }
   }
