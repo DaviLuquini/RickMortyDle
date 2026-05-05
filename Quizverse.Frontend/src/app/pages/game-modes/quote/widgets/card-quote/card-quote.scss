@@ -1,0 +1,91 @@
+.qcard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 35rem;
+    padding: 1.5rem 1.25rem 1.25rem;
+    background: rgba(15, 23, 42, 0.9); // slate-900/90
+    border: 1px solid rgba(8, 186, 227, 0.25);
+    border-radius: 18px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), 0 0 16px rgba(8, 186, 227, 0.08);
+    transform: rotate(-0.5deg);
+    transform-origin: center;
+    transition: transform 220ms cubic-bezier(0.5, 1.5, 0.6, 1), border-color 220ms ease, box-shadow 220ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .qcard:hover {
+        transform: rotate(0deg);
+        border-color: rgba(8, 186, 227, 0.5);
+        box-shadow: 0 6px 32px rgba(0, 0, 0, 0.45), 0 0 24px rgba(8, 186, 227, 0.18);
+    }
+}
+
+.qcard__tag {
+    font-size: 2rem;
+    line-height: 1;
+
+    @media (min-width: 1024px) {
+        font-size: 2.75rem;
+    }
+}
+
+.qcard__quote {
+    position: relative;
+    width: 100%;
+    padding: 0 0.5rem;
+}
+
+.qcard__mark {
+    color: #08BAE3;
+    font-family: serif;
+    font-size: 2.25rem;
+    line-height: 1;
+    opacity: 0.55;
+    text-shadow: 0 0 14px rgba(8, 186, 227, 0.45);
+
+    @media (min-width: 1024px) {
+        font-size: 3rem;
+    }
+}
+
+.qcard__mark--open {
+    display: inline-block;
+    margin-right: 0.25rem;
+    vertical-align: -0.25em;
+}
+
+.qcard__mark--close {
+    display: inline-block;
+    margin-left: 0.25rem;
+    vertical-align: -0.5em;
+}
+
+.qcard__text {
+    display: inline;
+    color: #f1f5f9; // slate-100
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+
+    @media (min-width: 1024px) {
+        font-size: 1.5rem;
+    }
+}
+
+.qcard__attribution {
+    color: #FFF765;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-top: 0.25rem;
+    text-shadow: 0 0 8px rgba(255, 247, 101, 0.25);
+}

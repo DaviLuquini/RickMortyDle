@@ -1,7 +1,7 @@
 import { Component, computed, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, signal, ViewChild } from '@angular/core';
 import { ICharacter } from '../../models/character';
 import { CommonModule } from '@angular/common';
-import { Image, Landmark, Laugh, LucideAngularModule, MessageSquareQuote } from "lucide-angular";
+import { Image, Landmark, Laugh, LucideAngularModule, MessageSquareQuote, Search, X } from "lucide-angular";
 import { PlayButton } from '../play-button/play-button';
 import { CharacterSearchService } from '../../services/character-search.service';
 import { IGuessResult } from './models/guess-result';
@@ -25,6 +25,8 @@ export class CharacterSearch implements OnInit {
   public readonly Laugh = Laugh;
   public readonly Image = Image;
   public readonly Landmark = Landmark;
+  public readonly Search = Search;
+  public readonly X = X;
   public showIconCircle = false;
   public searchText = signal('');
   public showDropdown = signal(false);
@@ -32,6 +34,9 @@ export class CharacterSearch implements OnInit {
   public guessHistory = signal<IGuessResult[]>([]);
   public tries = signal(0);
   public timeLeft = '';
+  public highlightedIndex = signal(-1);
+  public errorMessage = signal('');
+  private errorTimeout: ReturnType<typeof setTimeout> | null = null;
 
   constructor(private readonly router: Router) { }
 
@@ -52,7 +57,7 @@ export class CharacterSearch implements OnInit {
 
     const alreadyGuessed = this.characterSearchService.guessHistory().some(g => g.character.id === guessedCharacter.id);
     if (alreadyGuessed) {
-      alert('Personagem já adicionado na lista.');
+      this.flashError('Personagem já adicionado na lista.');
       return;
     }
 
@@ -111,6 +116,7 @@ export class CharacterSearch implements OnInit {
 
     this.searchText.set('');
     this.showDropdown.set(false);
+    this.highlightedIndex.set(-1);
   }
 
   filteredInputCharacters = computed(() => {
@@ -143,7 +149,54 @@ export class CharacterSearch implements OnInit {
 
     if (!el.contains(event.target as Node)) {
       this.showDropdown.set(false);
+      this.highlightedIndex.set(-1);
     }
+  }
+
+  onInputChange(value: string): void {
+    this.searchText.set(value);
+    this.highlightedIndex.set(-1);
+    if (!this.showDropdown()) {
+      this.showDropdown.set(true);
+    }
+  }
+
+  clearSearch(): void {
+    this.searchText.set('');
+    this.highlightedIndex.set(-1);
+    this.showDropdown.set(true);
+  }
+
+  onSearchKeydown(event: KeyboardEvent): void {
+    const list = this.filteredInputCharacters();
+    if (!list.length) return;
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      this.showDropdown.set(true);
+      const next = this.highlightedIndex() + 1;
+      this.highlightedIndex.set(next >= list.length ? 0 : next);
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      this.showDropdown.set(true);
+      const prev = this.highlightedIndex() - 1;
+      this.highlightedIndex.set(prev < 0 ? list.length - 1 : prev);
+    } else if (event.key === 'Enter') {
+      const idx = this.highlightedIndex();
+      if (idx >= 0 && idx < list.length) {
+        event.preventDefault();
+        this.makeGuess(list[idx]);
+      }
+    } else if (event.key === 'Escape') {
+      this.showDropdown.set(false);
+      this.highlightedIndex.set(-1);
+    }
+  }
+
+  private flashError(message: string): void {
+    this.errorMessage.set(message);
+    if (this.errorTimeout) clearTimeout(this.errorTimeout);
+    this.errorTimeout = setTimeout(() => this.errorMessage.set(''), 2500);
   }
 
   updateShowPlayButtonIcon() {

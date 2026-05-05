@@ -1,12 +1,17 @@
-<div class="p-4 sm:p-6 backdrop-blur-sm bg-slate-700 border-2 border-slate-400 hover:border-slate-500 rounded-2xl transition-all duration-300 group 
-         cursor-pointer shadow-lg hover:shadow-slate-500/30 w-full">
-    <div class="flex flex-col items-center text-center justify-between mb-4 gap-3 sm:gap-4 lg:w-128">
-        <span class="wubbalubba text-4xl">Which character is in the image?</span>
-        <div class="relative w-60 h-60 border-2 border-white overflow-hidden rounded-xl">
-            <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out"
-                [style.opacity]="imageLoaded ? 1 : 0" [style.transform]="zoomScale" [src]="correctCharacter?.splash"
-                alt="Character Splash Art" (load)="onImageLoad()" />
-        </div>
-        <span class="text-gray-500 text-sm font-bold">Each try zooms out a bit.</span>
+<article class="scard">
+    <span class="scard__tag wubbalubba">Which character is in the image?</span>
+
+    <div class="scard__frame">
+        <img class="scard__img"
+             [style.opacity]="imageLoaded ? 1 : 0"
+             [style.transform]="zoomScale"
+             [src]="correctCharacter?.splash"
+             alt="Character Splash Art"
+             (load)="onImageLoad()" />
+        <div class="scard__scanlines" aria-hidden="true"></div>
+        <div class="scard__vignette" aria-hidden="true"></div>
+        <span class="scard__try-chip" aria-label="Number of tries">TRY {{ tries }}</span>
     </div>
-</div>
+
+    <span class="scard__hint">Each try zooms out a bit.</span>
+</article>

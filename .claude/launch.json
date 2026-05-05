@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "quizverse-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start", "--prefix", "Quizverse.Frontend"],
+      "port": 4200,
+      "autoPort": true
+    }
+  ]
+}

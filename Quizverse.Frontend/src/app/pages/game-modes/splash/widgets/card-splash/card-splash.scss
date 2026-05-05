@@ -1,0 +1,104 @@
+.scard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 35rem;
+    padding: 1.5rem 1.25rem;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(8, 186, 227, 0.25);
+    border-radius: 18px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), 0 0 16px rgba(8, 186, 227, 0.08);
+    transform: rotate(-0.5deg);
+    transform-origin: center;
+    transition: transform 220ms cubic-bezier(0.5, 1.5, 0.6, 1), border-color 220ms ease, box-shadow 220ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .scard:hover {
+        transform: rotate(0deg);
+        border-color: rgba(8, 186, 227, 0.5);
+        box-shadow: 0 6px 32px rgba(0, 0, 0, 0.45), 0 0 24px rgba(8, 186, 227, 0.18);
+    }
+}
+
+.scard__tag {
+    font-size: 1.75rem;
+    line-height: 1.05;
+
+    @media (min-width: 1024px) {
+        font-size: 2.25rem;
+    }
+}
+
+.scard__frame {
+    position: relative;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(8, 186, 227, 0.45);
+    background: #0f172a;
+    box-shadow: 0 0 18px rgba(8, 186, 227, 0.18), inset 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+.scard__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform-origin: center center;
+    transition: opacity 700ms ease-out, transform 600ms ease-out;
+}
+
+.scard__scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        transparent 0 2px,
+        rgba(0, 0, 0, 0.16) 2px 3px
+    );
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+}
+
+.scard__vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 55%,
+        rgba(5, 7, 10, 0.55) 100%
+    );
+}
+
+.scard__try-chip {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    padding: 0.2rem 0.55rem;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(8, 186, 227, 0.35);
+    border-radius: 6px;
+    color: #FFF765;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+    box-shadow: 0 0 8px rgba(8, 186, 227, 0.18);
+}
+
+.scard__hint {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}

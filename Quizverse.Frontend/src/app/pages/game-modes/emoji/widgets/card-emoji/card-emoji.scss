@@ -1,0 +1,94 @@
+.ecard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 35rem;
+    padding: 1.5rem 1.25rem;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(8, 186, 227, 0.25);
+    border-radius: 18px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), 0 0 16px rgba(8, 186, 227, 0.08);
+    transform: rotate(-0.5deg);
+    transform-origin: center;
+    transition: transform 220ms cubic-bezier(0.5, 1.5, 0.6, 1), border-color 220ms ease, box-shadow 220ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .ecard:hover {
+        transform: rotate(0deg);
+        border-color: rgba(8, 186, 227, 0.5);
+        box-shadow: 0 6px 32px rgba(0, 0, 0, 0.45), 0 0 24px rgba(8, 186, 227, 0.18);
+    }
+}
+
+.ecard__tag {
+    font-size: 1.75rem;
+    line-height: 1.05;
+
+    @media (min-width: 1024px) {
+        font-size: 2.5rem;
+    }
+}
+
+.ecard__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 18rem;
+    margin: 0 auto;
+}
+
+.ecard__tile {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    background: #1e293b; // slate-800
+    border: 1px dashed #475569; // slate-600
+    border-radius: 12px;
+    opacity: 0.6;
+    transition: opacity 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
+}
+
+.ecard__tile.is-unlocked {
+    opacity: 1;
+    border-style: solid;
+    border-color: rgba(8, 186, 227, 0.5);
+    background: #0f172a; // slate-900
+    box-shadow: 0 0 12px rgba(8, 186, 227, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.ecard__glyph {
+    font-size: 2.25rem;
+    line-height: 1;
+    animation: revealUp 240ms ease both;
+
+    @media (min-width: 640px) {
+        font-size: 2.75rem;
+    }
+}
+
+.ecard__glyph--locked {
+    color: #64748b;
+    font-weight: 700;
+    font-size: 1.5rem;
+    animation: none;
+
+    @media (min-width: 640px) {
+        font-size: 1.75rem;
+    }
+}
+
+.ecard__hint {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}

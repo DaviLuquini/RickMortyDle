@@ -1,31 +1,54 @@
-<div class="flex flex-col items-center justify-center relative lg:w-140">
-  <div #dropdownWrapper class="flex flex-col items-center justify-center w-full relative">
-    <input type="text" placeholder="Type character name..." class="h-14 w-full rounded-lg border-2 border-slate-700 bg-slate-800 px-6 
-             text-lg text-slate-200 placeholder-slate-500 outline-none
-             transition-all duration-300 ease-in-out
-             focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/50" [value]="searchText()"
-      [disabled]="isGameOver()" (click)="showDropdown.set(true)" (focus)="showDropdown.set(true)"
-      (input)="searchText.set($any($event.target).value)" />
+<div class="search-shell">
+  <div #dropdownWrapper class="search-field" [class.is-disabled]="isGameOver()">
+    <lucide-icon class="search-field__icon" [img]="Search" aria-hidden="true"></lucide-icon>
 
-    @if(showDropdown() && filteredInputCharacters().length > 0 && !isGameOver()) {
-    <ul class="absolute top-full z-50 max-h-60 overflow-y-auto rounded-lg bg-slate-700 text-slate-200 shadow-lg w-full">
-      @for (character of filteredInputCharacters(); track character.id) {
-      <li class="px-4 py-2 hover:bg-cyan-500 cursor-pointer flex items-center" (click)="makeGuess(character)"
-        (keypress)="makeGuess(character)">
-        <img [src]="character.image" alt="{{ character.name }}" class="w-10 h-10 rounded-lg mr-2" />
-        {{ character.name }}
-      </li>
-      }
-    </ul>
+    <input type="text"
+      class="search-field__input"
+      placeholder="Type character name..."
+      autocomplete="off"
+      role="combobox"
+      aria-label="Search characters"
+      [attr.aria-expanded]="showDropdown() && !isGameOver()"
+      aria-controls="character-listbox"
+      [value]="searchText()"
+      [disabled]="isGameOver()"
+      (click)="showDropdown.set(true)"
+      (focus)="showDropdown.set(true)"
+      (input)="onInputChange($any($event.target).value)"
+      (keydown)="onSearchKeydown($event)" />
+
+    @if (searchText().length > 0 && !isGameOver()) {
+      <button type="button" class="search-field__clear" aria-label="Clear search" (click)="clearSearch()">
+        <lucide-icon [img]="X" aria-hidden="true"></lucide-icon>
+      </button>
     }
 
-    @if(showDropdown() && filteredInputCharacters().length == 0 && searchText().length > 1) {
-    <ul
-      class="absolute top-full mt-1 z-50 max-h-60 overflow-y-auto rounded-lg bg-slate-700 text-slate-200 shadow-lg w-full">
-      <li class="px-4 py-2">No characters found.</li>
-    </ul>
+    @if (showDropdown() && filteredInputCharacters().length > 0 && !isGameOver()) {
+      <ul id="character-listbox" role="listbox" class="search-dropdown">
+        @for (character of filteredInputCharacters(); track character.id; let i = $index) {
+          <li role="option"
+            class="search-dropdown__item"
+            [class.is-highlighted]="highlightedIndex() === i"
+            [style.--idx]="i"
+            (click)="makeGuess(character)"
+            (mouseenter)="highlightedIndex.set(i)">
+            <img [src]="character.image" [alt]="character.name" class="search-dropdown__avatar" />
+            <span class="search-dropdown__name">{{ character.name }}</span>
+          </li>
+        }
+      </ul>
+    }
+
+    @if (showDropdown() && filteredInputCharacters().length === 0 && searchText().length > 1 && !isGameOver()) {
+      <div class="search-dropdown search-dropdown--empty">
+        <span class="search-dropdown__empty-text">No characters found.</span>
+      </div>
     }
   </div>
+
+  @if (errorMessage().length > 0) {
+    <div class="search-error" role="status">{{ errorMessage() }}</div>
+  }
 </div>
 
 @if(gameMode == 'classic') {
@@ -44,15 +67,13 @@
 
 
 @if (isGameOver()) {
-<div #gameOverElement class="bg-gradient-to-br from-gray-100 to-green-500 border-2 border-green-500 rounded-xl 
-  shadow-[0_0_15px_rgba(0,255,0,0.3),0_0_10px_rgba(0,0,0,0.1)] p-1 lg:p-5 text-center max-w-md 
-  w-[80%] h-[90%] lg:w-full lg:h-full game-over-bounce flex flex-col items-center gap-1">
-  <h2 class="text-base lg:text-2xl font-bold mb-2">🎉 Congratulations! 🎉</h2>
-  <p class="text-sm lg:text-lg">You guessed correctly in <span class="font-bold">{{ tries() }} tries!</span></p>
-  <span class="text-sm lg:text-lg">
-    Next character in: <span class="text-base lg:text-xl font-bold">{{ timeLeft }}</span>
-  </span>
-  <p class="text-sm lg:text-lg font-bold">Next mode:</p>
+<div #gameOverElement class="gameover" role="dialog" aria-live="polite" aria-label="Game complete">
+  <h2 class="wubbalubba gameover__title">🎉 Congratulations! 🎉</h2>
+  <p class="gameover__sub">You guessed correctly in <span class="gameover__strong">{{ tries() }} tries!</span></p>
+  <p class="gameover__timer">
+    Next character in: <span class="gameover__timer-value">{{ timeLeft }}</span>
+  </p>
+  <p class="gameover__next-label">Next mode</p>
   @switch (gameMode) {
   @case ('classic') {
   <app-play-button [customStyle]="'h-12! w-65! lg:min-w-95! lg:max-w-95! lg:h-20!'" [showIconCircle]="showIconCircle"
