@@ -1,7 +1,9 @@
-<div class="p-4 sm:p-6 backdrop-blur-sm bg-slate-700 border-2 border-slate-400 hover:border-slate-500 rounded-2xl transition-all duration-300 group 
-               cursor-pointer shadow-lg hover:shadow-slate-500/30 w-full">
-    <div class="flex flex-col items-center text-center justify-between mb-4 gap-3 sm:gap-4 lg:w-128">
-        <span class="wubbalubba text-5xl">Which character says</span>
-        <span class="text-2xl text-white">❝ {{ correctCharacter?.quote }} ❞</span>
+<article class="qcard">
+    <span class="qcard__tag wubbalubba">Which character says</span>
+    <div class="qcard__quote">
+        <span class="qcard__mark qcard__mark--open" aria-hidden="true">❝</span>
+        <p class="qcard__text">{{ correctCharacter?.quote }}</p>
+        <span class="qcard__mark qcard__mark--close" aria-hidden="true">❞</span>
     </div>
-</div>
+    <span class="qcard__attribution">— ???</span>
+</article>
