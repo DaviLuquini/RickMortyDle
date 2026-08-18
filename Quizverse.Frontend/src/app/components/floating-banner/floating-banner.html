@@ -1,0 +1,97 @@
+﻿@if (isVisible()) {
+  <div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 transition-all duration-300 ease-out select-none">
+    
+    @if (!isMinimized()) {
+      <!-- Expanded Banner Card -->
+      <aside 
+        aria-label="DL Digital - Desenvolvimento Web"
+        class="w-[calc(100vw-2rem)] sm:w-[380px] bg-slate-950/90 backdrop-blur-md text-white rounded-2xl border-2 border-[#08BAE3]/60 shadow-[0_0_25px_rgba(8,186,227,0.35)] hover:shadow-[0_0_30px_rgba(151,206,76,0.45)] transition-all duration-300 p-4 flex flex-col gap-3 relative overflow-hidden group">
+        
+        <!-- Background Neon Ambient Glow -->
+        <div class="absolute -top-12 -right-12 w-28 h-28 bg-[#08BAE3]/20 rounded-full blur-2xl pointer-events-none group-hover:bg-[#97ce4c]/25 transition-all duration-500"></div>
+        <div class="absolute -bottom-12 -left-12 w-28 h-28 bg-[#97ce4c]/20 rounded-full blur-2xl pointer-events-none group-hover:bg-[#08BAE3]/25 transition-all duration-500"></div>
+
+        <!-- Header: Badge + Action Controls -->
+        <div class="flex items-center justify-between gap-2 border-b border-slate-800/80 pb-2.5 relative z-10">
+          <div class="flex items-center gap-2">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#97ce4c] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#97ce4c]"></span>
+            </span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#08BAE3] flex items-center gap-1">
+              <lucide-icon [img]="Sparkles" class="w-3.5 h-3.5 text-[#FFF765]"></lucide-icon>
+              DL Digital
+            </span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-medium">Web Dev</span>
+          </div>
+
+          <div class="flex items-center gap-1">
+            <!-- Minimize Button -->
+            <button 
+              type="button"
+              (click)="toggleMinimize($event)"
+              title="Minimizar banner"
+              aria-label="Minimizar banner"
+              class="cursor-pointer text-slate-400 hover:text-white p-1 rounded-md hover:bg-slate-800/70 transition-colors">
+              <lucide-icon [img]="ChevronDown" class="w-4 h-4"></lucide-icon>
+            </button>
+            <!-- Close Button -->
+            <button 
+              type="button"
+              (click)="close($event)"
+              title="Fechar banner"
+              aria-label="Fechar banner"
+              class="cursor-pointer text-slate-400 hover:text-red-400 p-1 rounded-md hover:bg-slate-800/70 transition-colors">
+              <lucide-icon [img]="X" class="w-4 h-4"></lucide-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bilingual Message Body -->
+        <div class="flex flex-col gap-2 relative z-10 text-sm">
+          <!-- Portuguese text -->
+          <div class="flex items-start gap-2 text-slate-100">
+            <span class="text-base leading-tight select-none">🇧🇷</span>
+            <p class="leading-snug font-medium">
+              Quer ter um site igual a esse?
+            </p>
+          </div>
+
+          <!-- English text -->
+          <div class="flex items-start gap-2 text-slate-300">
+            <span class="text-base leading-tight select-none">🇺🇸</span>
+            <p class="leading-snug text-xs sm:text-sm font-normal text-slate-300">
+              Want a website like this?
+            </p>
+          </div>
+        </div>
+
+        <!-- CTA Link with UTM -->
+        <a 
+          [href]="targetUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative z-10 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#97ce4c] via-[#08BAE3] to-[#97ce4c] bg-[length:200%_auto] hover:bg-right text-slate-950 font-bold text-sm tracking-wide shadow-[0_0_15px_rgba(8,186,227,0.35)] hover:shadow-[0_0_25px_rgba(151,206,76,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer text-center">
+          <span>Acesse aqui / Click here</span>
+          <lucide-icon [img]="ExternalLink" class="w-4 h-4"></lucide-icon>
+        </a>
+
+      </aside>
+    } @else {
+      <!-- Minimized Floating Pill -->
+      <button 
+        type="button"
+        (click)="toggleMinimize($event)"
+        class="cursor-pointer flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-slate-950/95 backdrop-blur-md text-white border border-[#08BAE3]/80 shadow-[0_0_20px_rgba(8,186,227,0.4)] hover:shadow-[0_0_25px_rgba(151,206,76,0.5)] hover:scale-105 transition-all duration-300 group">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#97ce4c] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#97ce4c]"></span>
+        </span>
+        <lucide-icon [img]="Sparkles" class="w-4 h-4 text-[#FFF765] group-hover:rotate-12 transition-transform"></lucide-icon>
+        <span class="text-xs font-semibold text-[#08BAE3]">DL Digital • Quer um site? / Want a site?</span>
+        <lucide-icon [img]="ChevronUp" class="w-3.5 h-3.5 text-slate-400 group-hover:text-white"></lucide-icon>
+      </button>
+    }
+
+  </div>
+}
