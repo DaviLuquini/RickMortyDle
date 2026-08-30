@@ -1,4 +1,4 @@
-﻿@if (isVisible()) {
+﻿@if (false) {
   <div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 transition-all duration-300 ease-out select-none">
     
     @if (!isMinimized()) {
@@ -48,21 +48,23 @@
         </div>
 
         <!-- Bilingual Message Body -->
-        <!-- <div class="flex flex-col gap-2 relative z-10 text-sm">
-
+        <div class="flex flex-col gap-2 relative z-10 text-sm">
+          <!-- Portuguese text -->
           <div class="flex items-start gap-2 text-slate-100">
             <span class="text-base leading-tight select-none">🇧🇷</span>
             <p class="leading-snug font-medium">
               Quer ter um site igual a esse?
             </p>
           </div>
+
+          <!-- English text -->
           <div class="flex items-start gap-2 text-slate-300">
             <span class="text-base leading-tight select-none">🇺🇸</span>
             <p class="leading-snug text-xs sm:text-sm font-normal text-slate-300">
               Want a website like this?
             </p>
           </div>
-        </div> -->
+        </div>
 
         <!-- CTA Link with UTM -->
         <a 
